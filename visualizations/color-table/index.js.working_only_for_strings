@@ -1,0 +1,84 @@
+// src/index.js
+
+import React, { useState } from 'react';
+import { PlatformStateContext } from 'nr1';
+import ColoredTableVisualization from './ColoredTableVisualization';
+
+export default function YourNerdlet() {
+  const [nrqlQuery, setNrqlQuery] = useState('');
+  const [accountId, setAccountId] = useState('');
+  const [colorMapping, setColorMapping] = useState([{ string: '', color: '' }]);
+
+  const handleQueryChange = (event) => {
+    setNrqlQuery(event.target.value);
+  };
+
+  const handleAccountIdChange = (event) => {
+    setAccountId(event.target.value);
+  };
+
+  const handleColorMappingChange = (index, field, value) => {
+    const newColorMapping = [...colorMapping];
+    newColorMapping[index][field] = value;
+    setColorMapping(newColorMapping);
+  };
+
+  const addColorMapping = () => {
+    setColorMapping([...colorMapping, { string: '', color: '' }]);
+  };
+
+  return (
+    <PlatformStateContext.Consumer>
+      {(platformState) => (
+        <div>
+          <h2>Input your NRQL Query and Account ID:</h2>
+          <div>
+            <label>
+              NRQL Query:
+              <input
+                type="text"
+                value={nrqlQuery}
+                onChange={handleQueryChange}
+                placeholder="Enter NRQL query"
+                style={{ width: '300px', marginRight: '10px' }}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Account ID:
+              <input
+                type="text"
+                value={accountId}
+                onChange={handleAccountIdChange}
+                placeholder="Enter account ID"
+                style={{ width: '150px' }}
+              />
+            </label>
+          </div>
+          <h2>Configure String-Color Mappings:</h2>
+          {colorMapping.map((mapping, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                value={mapping.string}
+                onChange={(e) => handleColorMappingChange(index, 'string', e.target.value)}
+                placeholder="Enter string value"
+                style={{ width: '150px', marginRight: '10px' }}
+              />
+              <input
+                type="text"
+                value={mapping.color}
+                onChange={(e) => handleColorMappingChange(index, 'color', e.target.value)}
+                placeholder="Enter color"
+                style={{ width: '150px', marginRight: '10px' }}
+              />
+            </div>
+          ))}
+          <button onClick={addColorMapping}>Add New Mapping</button>
+          <ColoredTableVisualization nrqlQuery={nrqlQuery} accountId={accountId} colorMapping={colorMapping} />
+        </div>
+      )}
+    </PlatformStateContext.Consumer>
+  );
+}

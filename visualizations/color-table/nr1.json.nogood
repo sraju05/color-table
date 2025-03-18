@@ -1,0 +1,24 @@
+{
+  "schemaType": "VISUALIZATION",
+  "id": "color-table",
+  "displayName": "ColorTable",
+  "description": "A visualization widget for displaying color-coded data in a table format based on NRQL query results.",
+  "configuration": [
+    {
+      "type": "react",
+      "title": "Color Table",
+      "provider": "Your Organization",
+      "supportsQuery": true,
+      "config": {
+        "nrqlQuery": "SELECT * FROM Transaction SINCE 1 DAY AGO",
+        "accountId": 0,
+        "columnName": "status",
+        "defaultColorMapping": [
+          { "string": "success", "color": "green" },
+          { "string": "error", "color": "red" },
+          { "string": "warning", "color": "yellow" }
+        ]
+      }
+    }
+  ]
+}

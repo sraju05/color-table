@@ -1,0 +1,25 @@
+{
+    "schemaType": "VISUALIZATION",
+    "id": "color-table",
+    "displayName": "ColorTable",
+    "description": "",
+    "configuration": [
+        {
+            "name": "nrqlQuery",
+            "title": "NRQL Queries",
+            "type": "string"
+        },
+        {
+            "name": "accountId",
+            "title": "Enter Account ID",
+            "description": "Enter the account ID",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "title": "Stroke color",
+            "description": "A stroke color to override the default stroke color",
+            "type": "string"
+        }
+    ]
+}

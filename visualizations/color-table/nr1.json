@@ -1,0 +1,37 @@
+{
+    "schemaType": "VISUALIZATION",
+    "id": "color-table",
+    "displayName": "ColorTable",
+    "description": "",
+    "configuration": [
+        {
+            "name": "nrqlQuery",
+            "title": "NRQL Queries",
+            "type": "nrql"
+        },
+        {
+            "name": "accountId",
+            "title": "Enter Account ID",
+            "description": "Enter the account ID",
+            "type": "account-id"
+        },
+        {
+            "name": "colorMapping",
+            "title": "String and Color Mapping",
+            "description": "Enter the value and the color",
+            "type": "collection",
+            "items": [
+                {
+                  "name": "userString",
+                  "title": "String to Match",
+                  "type": "string"
+                },
+                {
+                    "name": "userColor",
+                    "title": "Enter the color",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
